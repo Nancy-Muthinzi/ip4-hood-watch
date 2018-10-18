@@ -50,6 +50,7 @@ class Business(models.Model):
     name = models.CharField(max_length=50)
     user = models.ForeignKey(User, default=True, on_delete=models.CASCADE)
     hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='business/', default=True)
     email = models.EmailField()
 
     def save_business(self):
