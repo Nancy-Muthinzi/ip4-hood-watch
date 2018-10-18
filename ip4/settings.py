@@ -127,4 +127,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-GEOPOSITION_GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY'

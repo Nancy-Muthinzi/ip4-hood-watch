@@ -24,8 +24,8 @@ class Admin(models.Model):
         ordering = ['first_name', 'last_name']
 
 class Hood(models.Model):
-    hood_name = models.CharField(max_length=25)
-    hood_location = models.CharField(max_length=50)
+    name = models.CharField(max_length=25)
+    location = models.CharField(max_length=50)
     occupants_count = models.IntegerField()   
     admin = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True)
 
@@ -44,4 +44,25 @@ class Hood(models.Model):
         self.update()
 
     def update_occupants(self):
-        self.update()        
+        self.update()      
+
+class Business(models.Model):
+    name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, default=True, on_delete=models.CASCADE)
+    hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    email = models.EmailField()
+
+    def save_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()    
+
+    @classmethod
+    def find_business(cls,hood_id):
+        business = cls.objects.filter(title__icontains=search_term)
+        return hood
+
+    def update_business(self):
+        self.update()
+
