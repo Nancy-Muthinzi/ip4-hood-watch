@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime as dt
 
-class Profile(models.Model):
+class Admin(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='profile', default=True)
     first_name = models.CharField(max_length=30)
@@ -23,3 +23,17 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ['first_name', 'last_name']
+
+class Hood(models.Model):
+    hood_name = models.CharField(max_length=25)
+    hood_location = models.CharField(max_length=50)
+    occupants_count = models.IntegerField()   
+    admin = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True)
+
+    def save_hood(self):
+        self.save()
+
+    def delete_hood(self):
+        self.delete()    
+
+        

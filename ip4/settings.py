@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'hoodwatch.apps.HoodWatchConfig',
     'bootstrap3',
+    'geoposition',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,3 +126,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'YOUR_API_KEY'
