@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-import datetime as dt
 
 class Admin(models.Model):
     user = models.OneToOneField(
@@ -36,4 +35,13 @@ class Hood(models.Model):
     def delete_hood(self):
         self.delete()    
 
-        
+    @classmethod
+    def find_hood(cls,hood_id):
+        hood = cls.objects.filter(title__icontains=search_term)
+        return hood
+
+    def update_hood(self):
+        self.update()
+
+    def update_occupants(self):
+        self.update()        
