@@ -24,8 +24,8 @@ class Admin(models.Model):
         ordering = ['first_name', 'last_name']
 
 class Hood(models.Model):
-    name = models.CharField(max_length=25)
-    location = models.CharField(max_length=50)
+    hood_name = models.CharField(max_length=25)
+    hood_location = models.CharField(max_length=50)
     occupants_count = models.IntegerField()   
     admin = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True)
 
@@ -46,12 +46,18 @@ class Hood(models.Model):
     def update_occupants(self):
         self.update()      
 
+class User(models.Model):
+    name = models.CharField(max_length=25)
+    id = models.IntegerField(primary_key=True)
+    hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    user_email = models.EmailField()
+
 class Business(models.Model):
-    name = models.CharField(max_length=50)
+    business_name = models.CharField(max_length=50)
     user = models.ForeignKey(User, default=True, on_delete=models.CASCADE)
     hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='business/', default=True)
-    email = models.EmailField()
+    business_email = models.EmailField()
 
     def save_business(self):
         self.save()
