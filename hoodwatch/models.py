@@ -67,3 +67,9 @@ class Business(models.Model):
 
     def update_business(self):
         self.update()
+
+class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length = 50)
+    description = models.TextField(max_length=500)
+    hood = models.ForeignKey(Hood, blank=True,on_delete=models.CASCADE)

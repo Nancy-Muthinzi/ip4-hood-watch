@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime as dt
-from .models import Hood, Profile, Business
+from .models import Hood, Profile, Business, Post
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm
 
@@ -14,7 +14,7 @@ def home(request):
             print('valid')
     else:
         form=PostForm()
-        
+
     return render(request, 'home.html', {'date': date, 'postForm':form})
 
 @login_required(login_url='/accounts/login/')
