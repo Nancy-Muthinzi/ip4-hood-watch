@@ -67,4 +67,3 @@ class Business(models.Model):
 
     def update_business(self):
         self.update()
-

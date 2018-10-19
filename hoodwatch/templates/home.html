@@ -1,4 +1,5 @@
 {%extends 'base.html'%}
+{% load bootstrap3 %}
 
 {% block content %}
 {{block.super}}
@@ -6,3 +7,11 @@
 <h1>'Welcome to The Hood Watchgroup!'</h1>
 
 {% endblock %}
+
+<div class="container-fluid">
+    <form action="{%url 'home'%}" method="post">
+        {%csrf_token%}
+        {% bootstrap_form postForm layout='inline' %}
+        <input type="submit" value="post">
+    </form>
+</div>

@@ -3,12 +3,19 @@ from django.http import HttpResponse
 import datetime as dt
 from .models import Hood, Profile, Business
 from django.contrib.auth.decorators import login_required
+from .forms import PostForm
 
 @login_required(login_url='/accounts/login/')
 def home(request):
     date = dt.date.today()
-
-    return render(request, 'home.html', {"date": date,})
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            print('valid')
+    else:
+        form=PostForm()
+        
+    return render(request, 'home.html', {'date': date, 'postForm':form})
 
 @login_required(login_url='/accounts/login/')
 def profile(request, id):
