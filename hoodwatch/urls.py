@@ -1,6 +1,5 @@
 from django.conf.urls import url
 from . import views
-
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,7 +9,10 @@ urlpatterns=[
     url('^today/$',views.home,name='siteToday'),
     url('^profile/(\d+)', views.profile, name='profile'),
     url(r'^search/', views.search_results, name='search_results'),
-    url(r'^business/(\d+)',views.business,name ='business')
+    url(r'^business/(\d+)',views.business,name ='business'),
+    url(r'^contact',views.contact,name ='contact'),
+    url(r'^location/(\d+)',views.location,name ='location'),
+    url(r'^hood/(\d+)',views.hood,name ='hood')
 ]
 
 if settings.DEBUG:

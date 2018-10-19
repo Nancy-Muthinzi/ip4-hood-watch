@@ -23,7 +23,13 @@ def profile(request, id):
     # profile = Profile.objects.get(user=current_user)
     profile = Profile.objects.get()
 
-    return render(request, 'profile.html', {'profile':profile})    
+    return render(request, 'profile.html', {'profile':profile})  
+
+@login_required(login_url='/accounts/login/')
+def hood(request, hood_id):
+
+    return render(request, 'hood.html')
+
 
 @login_required(login_url='/accounts/login/')
 def business(request, hood_id):
@@ -32,6 +38,17 @@ def business(request, hood_id):
     except DoesNotExist:
         raise Http404()
     return render(request,"business.html", {"business":business})
+
+@login_required(login_url='/accounts/login/')
+def location(request, location_id):
+
+    return render(request, 'location.html')   
+
+@login_required(login_url='/accounts/login/')
+def contact(request):
+
+    return render(request, 'contact.html')
+
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):

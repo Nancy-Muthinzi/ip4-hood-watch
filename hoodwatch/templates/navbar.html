@@ -59,11 +59,20 @@
                     </li>
                     <li><a href="{% url 'profile' user.id %}" class="">Profile</a>
                     </li>
-                    <li><a href="#section3" class="">Hood</a>
+                    <li><a href="{% url 'hood' user.id %}" class="">Hood</a>
                     </li>
-                    <li><a href="#section4" class="">Locations</a>
-                    </li>
-                    <li><a href="#section5" class="">Contact</a>
+                    <li><a href="{% url 'location' user.id%}" class="">Locations</a></li>
+                    <!-- <div class="dropdown">
+                        <button class="dropbtn">Dropdown
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div> -->
+                    <li><a href="{% url 'contact' %}" class="">Contact</a>
                     </li>
                 </ul>
             </div>
