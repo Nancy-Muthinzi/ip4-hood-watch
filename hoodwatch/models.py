@@ -62,7 +62,7 @@ class Business(models.Model):
 
     @classmethod
     def search_by_business_name(cls,search_term):
-        hood = cls.objects.filter(title__icontains=search_term)
+        hood = cls.objects.filter(business_name__icontains=search_term)
         return hood
 
     def update_business(self):
