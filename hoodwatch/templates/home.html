@@ -6,6 +6,13 @@
 
 <div class="container-fluid">
     <h1>'Welcome to The Hood Watchgroup!'</h1>
+    <h3>Businesses in the Hood</h3>
+    {% for post in business %}
+    {{post.user}}
+    <p>{{post.business_name}}</p>
+    {{post.hood_id}}
+
+    {% endfor %}
 
     <!-- <div class="posts">
         <h4>My Posts</h4>

@@ -9,11 +9,15 @@
     <h4>{{profile.first_name}} {{profile.last_name}}</h4>
     <p>{{profile.bio}}</p>
     <p>{{profile.email}}</p>
-    <p>{{profile.phone_number}}</p>
+    <p>{{profile.phone_number}}</p><br>
 
-{% for post in hoods %}
-<p>{{post.hood_name}}</p>
-{% endfor %}
+
+    <h4>My Hood</h4>
+    {% for post in hood %}
+
+    <h6>{{post.hood_name}}</h6>
+
+    {% endfor %}
 
 </div>
 {% endblock %}
