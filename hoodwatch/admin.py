@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Admin, Hood, Business, User
+from .models import Profile, Hood, Business
 
-admin.site.register(Admin)
+admin.site.register(Profile)
 admin.site.register(Hood)
 admin.site.register(Business)
-admin.site.register(User)
+

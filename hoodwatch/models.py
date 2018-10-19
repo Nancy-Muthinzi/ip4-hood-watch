@@ -1,16 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from location_field.models.plain import PlainLocationField
 
-class Admin(models.Model):
+class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='profile', default=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     profile_pic = models.ImageField(upload_to='profile/', default=True)
-    bio = models.CharField(max_length=200, default=True)
+    bio = models.CharField(max_length=500)
     email = models.EmailField()
     phone_number = models.CharField(max_length=10, blank=True)
-
+    
     def save_profile(self):
         self.save()
 
@@ -25,9 +26,9 @@ class Admin(models.Model):
 
 class Hood(models.Model):
     hood_name = models.CharField(max_length=25)
-    hood_location = models.CharField(max_length=50)
-    occupants_count = models.IntegerField()   
-    admin = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True)
+    city = models.CharField(max_length=25)
+    hood_location = PlainLocationField(based_fields=['city'], zoom=7)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def save_hood(self):
         self.save()
@@ -40,17 +41,11 @@ class Hood(models.Model):
         hood = cls.objects.filter(title__icontains=search_term)
         return hood
 
-    def update_hood(self):
-        self.update()
+    def __str__(self):
+        return self.hood_name 
 
-    def update_occupants(self):
-        self.update()      
-
-class User(models.Model):
-    name = models.CharField(max_length=25)
-    id = models.IntegerField(primary_key=True)
-    hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
-    user_email = models.EmailField()
+    class Meta:
+        ordering = ('hood_name',) 
 
 class Business(models.Model):
     business_name = models.CharField(max_length=50)
@@ -66,8 +61,8 @@ class Business(models.Model):
         self.delete()    
 
     @classmethod
-    def find_business(cls,hood_id):
-        business = cls.objects.filter(title__icontains=search_term)
+    def search_by_business_name(cls,search_term):
+        hood = cls.objects.filter(title__icontains=search_term)
         return hood
 
     def update_business(self):
