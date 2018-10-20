@@ -89,9 +89,8 @@ class Business(models.Model):
     def update_business(self):
         self.update()
 
-
-def __str__(self):
-    return self.business_name
+    def __str__(self):
+        return self.business_name
 
 
 class Post(models.Model):

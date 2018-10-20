@@ -24,9 +24,9 @@ def home(request):
 def profile(request, id):
     current_user = request.user
     profile = Profile.objects.get(user=current_user)
-    hood = Hood.objects.get()
+    hood = Hood.objects.all()
 
-    return render(request, 'profile.html', {'profile': profile})
+    return render(request, 'profile.html', {'profile': profile, 'hood':hood})
 
 
 @login_required(login_url='/accounts/login/')

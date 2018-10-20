@@ -15,11 +15,15 @@
             <ul class="nav navbar-nav">
                 <li><a href="#" class=""><img src="/static/images/th.png" width="200;"></a>
                 </li>
-                <li><a href="#" class="">Link</a>
-                </li>
-                <li><a href="#" class="">More</a>
-                </li>
-                <li><a href="#" class="">Options</a>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="fa fa-user-o" href="{% url 'profile' user.id %}" style="font-size:20px;"> {{user}}</a></li>
+
+                <li><a href="/accounts/login" class=""><i class="fa fa-share-square-o" style="font-size:20px">Login/Sign
+                            Up</i>
+                    </a>
                 </li>
             </ul>
             <!-- Adding a search form  -->
@@ -37,11 +41,6 @@
                 </form>
             </div>
             <!-- search form end -->
-
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="/accounts/login" class="">Login</a>
-                </li>
-            </ul>
         </div>
     </div>
     <div class="navbar navbar-custom navbar-inverse navbar-static-top" id="nav2">
