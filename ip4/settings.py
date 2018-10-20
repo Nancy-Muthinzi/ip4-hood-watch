@@ -55,9 +55,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!k9yo&69&s5lf2_z4!0e$8hoqu+1_n$jd#lr%9%@g&*g-sn@eu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nanciekathini-hoodwatch.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -65,8 +65,11 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'hoodwatch.apps.HoodWatchConfig',
     'bootstrap3',
+    'registration',
     'geoposition',
     'django.contrib.gis',
+    'django_forms_bootstrap',
+    'whitenoise.runserver_nostatic',
     'location_field.apps.DefaultConfig',
     'cities.apps.CitiesConfig',
     'django.contrib.admin',
@@ -78,8 +81,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -167,5 +170,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL='home'
 
 django_heroku.settings(locals())
