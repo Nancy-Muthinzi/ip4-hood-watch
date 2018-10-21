@@ -13,7 +13,7 @@
     <div class="navbar navbar-inverse navbar-static-top" id="topNav" style="background-color:firebrick;">
         <div class="container">
             <ul class="nav navbar-nav">
-                <li><a href="#" class=""><img src="/static/images/th.png" width="200;"></a>
+                <li><a href="{% url 'home' %}" class=""><img src="/static/images/th.png" width="200;"></a>
                 </li>
             </ul>
 
@@ -60,17 +60,9 @@
                     </li>
                     <li><a href="{% url 'hood' user.id %}" class="">Hood</a>
                     </li>
+                    <li><a href="{% url 'business' user.id %}" class="">Business</a>
+                    </li>
                     <li><a href="{% url 'location' user.id%}" class="">Locations</a></li>
-                    <!-- <div class="dropdown">
-                        <button class="dropbtn">Dropdown
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                    </div> -->
                     <li><a href="{% url 'contact' %}" class="">Contact</a>
                     </li>
                 </ul>

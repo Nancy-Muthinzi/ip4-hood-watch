@@ -8,13 +8,18 @@
     <div class="business">
         <h1>'Welcome to The Hood Watchgroup!'</h1>
         <h3>Businesses in the Hood</h3>
-        {% for post in business %}
-        <a href="{% url  'profile' post.user.id %}"> {{post.user}} </a><br>
-        <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid	red; border-radius: 4px; padding: 5px;">
-        <p>{{post.business_name}}</p>
-        <p>{{post.hood_id}}</p>
-        <p>{{post.email}}</p>
-        {% endfor %}
+
+        <div class="row">
+            {% for post in business %}
+            <div class="col-md-4">
+                <a href="{% url  'profile' post.user.id %}"> {{post.user}} </a><br>
+                <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
+                <p>{{post.business_name}}</p>
+                <p>{{post.hood_id}}</p>
+                <p>{{post.email}}</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
