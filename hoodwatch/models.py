@@ -46,8 +46,8 @@ def save_profile(sender, instance, **kwargs):
 
 class Hood(models.Model):
     hood_name = models.CharField(max_length=25)
-    city = models.CharField(max_length=25)
     hood_location = PlainLocationField(based_fields=['city'], zoom=7)
+    hood_count = models.IntegerField(default=0, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def save_hood(self):
