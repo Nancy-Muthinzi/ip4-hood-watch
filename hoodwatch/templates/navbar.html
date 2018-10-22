@@ -19,11 +19,11 @@
 
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="fa fa-user-o" href="{% url 'profile' user.id %}" style="font-size:20px;"> {{user}}</a></li>
-
-                <li><a href="/accounts/login" class=""><i class="fa fa-share-square-o" style="font-size:20px;"> Login/Sign
-                            Up</i>
-                    </a>
+                <li>
+                    <a class="fa fa-user-o" href="{% url 'profile' user.id %}" style="font-size:20px;"> {{user}}</a>
+                </li>
+                <li>
+                    <a href="/accounts/login"><i class="glyphicon glyphicon-log-in" style="font-size:20px;"> Log In</i></a>
                 </li>
                 <li>
                     <a href="/logout" class=""><i class="glyphicon glyphicon-log-out" style="font-size:20px;"> Log Out</i></a>

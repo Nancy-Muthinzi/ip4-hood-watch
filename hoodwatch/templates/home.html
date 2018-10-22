@@ -7,7 +7,14 @@
 <div class="container-fluid">
     <div class="business">
         <h1>'Welcome to The Hood Watchgroup!'</h1>
-        <h3>Businesses in the Hood</h3>
+        <h3  style="text-align:center;">Businesses in the Hood</h3>
+
+        <div class="new"  style="text-align:center;">
+                <p>Click to add a new business:</p>
+                <button type="button" class="btn">
+                    <a href="{%url 'new_business'%}">Add a Business</a>
+                </button>
+            </div><br><hr>
 
         <div class="row">
             {% for post in business %}

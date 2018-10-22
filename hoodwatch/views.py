@@ -3,7 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 import datetime as dt
 from .models import Hood, Profile, Business, Post
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm
+from .forms import PostForm,NewBusinessForm
 
 
 @login_required(login_url='/accounts/login/')
@@ -46,6 +46,21 @@ def business(request, hood_id):
         raise Http404()
     return render(request, "business.html", {"business": business})
 
+@login_required(login_url='/accounts/login/')
+def new_business(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NewBusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.profile = current_user
+            business.save()
+        return redirect('Home')
+
+    else:
+        form = NewBusinessForm()
+    return render(request, 'new_business.html', {"form": form})
 
 @login_required(login_url='/accounts/login/')
 def location(request, location_id):
