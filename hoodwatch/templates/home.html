@@ -24,16 +24,25 @@
 
     <!-- show businesses -->
     <div class="row">
-        
-        {% for post in business %}
-        <div class="col-md-4">
-            <a href="{% url  'profile' post.user.id %}">User: {{post.user}} </a><br>
-            <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
-            <p>Business Name: {{post.business_name}}</p>
-            <p>Hood location: {{post.hood}}</p>
-            <p>Email address: {{post.business_email}}</p><br>
+        <div class="panel panel-danger" style="text-align:center">
+            {% for post in business %}
+            <div class="col-md-4">
+                <div class="panel-header">
+                    <a href="{% url  'profile' post.user.id %}">User: {{post.user}} </a><br>
+                </div>
+                <div class="panel-body">
+                    <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
+                </div>
+                <div class="panel-content">
+                    <p>Business Name: {{post.business_name}}</p>
+                    <p>Hood location: {{post.hood}}</p>
+                </div>
+                <div class="panel-footer">
+                    <p>Email address: {{post.business_email}}</p><br>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 
     <!-- add hood -->
