@@ -5,16 +5,29 @@
 {{block.super}}
 
 <div class="container-fluid">
-<h1>All About My Hood</h1>
 
-<div class="hood">
-    {% for post in hood %}
-        <p>{{post.hood_name}}</p>
-        <p>{{post.hood_location}}</p>
-        <p>post.hood_count}}</p>
-    {% endfor %}
-</div>
-<br><br>
+    <div class="hoods" style="text-align:center;">
+        <h3>Hoods</h3>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <div class="panel panel-danger" style="padding:20px;">
+                    {% for post in hood %}
+                    <div class="panel-heading">
+                        <a href="{% url 'hood' post.user.id %}">Name: {{post.hood_name}}</a>
+                    </div>
+                    <div class="panel-body">
+                        <p>Location: {{post.hood_location}}</p>
+                    </div>
+                    <div class="panel-footer">
+                        <p>Population count: {{post.hood_count}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
 
 
 </div>

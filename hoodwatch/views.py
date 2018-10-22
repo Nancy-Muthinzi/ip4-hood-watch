@@ -44,8 +44,20 @@ def hood(request, hood_id):
 
 @login_required(login_url='/accounts/login/')
 def new_hood(request, hood_id):
+    current_user = request.user
 
-    return render(request, 'hood.html')
+    if request.method == 'POST':
+        form = NewHoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.profile = current_user
+            hood.save()
+        return redirect('home')
+
+    else:
+        nform = NewHoodForm()
+
+    return render(request, 'new_hood.html', {"form": nform})
 
 @login_required(login_url='/accounts/login/')
 def business(request, hood_id):

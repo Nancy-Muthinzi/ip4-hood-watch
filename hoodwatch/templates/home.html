@@ -6,8 +6,8 @@
 
 <div class="container-fluid" style="background-color:#F3DCDC;">
     <h1>'Welcome to The Hood Watchgroup!'</h1>
-    <h3 style="text-align:center;">Businesses in the Hood</h3>
 
+    <!-- add business -->
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -21,18 +21,53 @@
         </div>
         <div class="col-md-3"></div>
     </div>
-    <hr>
+
+    <!-- show businesses -->
     <div class="row">
+        
         {% for post in business %}
         <div class="col-md-4">
-            <a href="{% url  'profile' post.user.id %}"> {{post.user}} </a><br>
+            <a href="{% url  'profile' post.user.id %}">User: {{post.user}} </a><br>
             <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
-            <p>{{post.business_name}}</p>
-            <p>{{post.hood}}</p>
-            <p>{{post.email}}</p>
+            <p>Business Name: {{post.business_name}}</p>
+            <p>Hood location: {{post.hood}}</p>
+            <p>Email address: {{post.business_email}}</p><br>
         </div>
         {% endfor %}
     </div>
+
+    <!-- add hood -->
+    <!-- <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div style="text-align:center; padding-bottom:20px;">
+                <p>Click to add a new hood:</p>
+                <button type="button" class="btn">
+                    <a href="{%url 'new_hood'%}">Add a Hood</a>
+                </button>
+            </div>
+            <hr>
+        </div>
+        <div class="col-md-3"></div>
+    </div> -->
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div style="text-align:center; padding-bottom:50px;">
+                <p>Post a Comment</p>
+                <form action="{% url 'post' %}" method="post">
+                    {%csrf_token%}
+                    {% bootstrap_form postForm layout='inline' %}
+                    <input type="submit" value="Post">
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="col-md-3"></div>
+    </div>
+
+    <!-- show hoods -->
     <div class="hoods" style="text-align:center;">
         <h3>Hoods</h3>
         <div class="row">
@@ -54,22 +89,6 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div style="text-align:center; padding-bottom:50px;">
-                <p>Post a Comment</p>
-                <form action="{% url 'post' %}" method="post">
-                    {%csrf_token%}
-                    {% bootstrap_form postForm layout='inline' %}
-                    <input type="submit" value="Post">
-                </form>
-            </div>
-        </div>
-        <hr>
-        <div class="col-md-3"></div>
     </div>
 
 </div>
