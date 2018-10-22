@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
 import datetime as dt
 from .models import Hood, Profile, Business, Post
@@ -12,15 +12,20 @@ def home(request):
     business = Business.objects.all()
     profiles = Profile.objects.all()
     posts = Post.objects.all()
+    hoods = Hood.objects.all()
 
+    current_user = request.user
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            print('valid')
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+            return redirect('home')
     else:
         form = PostForm()
 
-    return render(request, 'home.html', {'date': date, 'profile':profiles, 'postForm': form, 'business': business, 'posts':posts})
+    return render(request, 'home.html', {'date': date, 'hood':hoods, 'profile':profiles, 'postForm': form, 'business': business, 'post':posts})
 
 
 @login_required(login_url='/accounts/login/')
@@ -37,6 +42,10 @@ def hood(request, hood_id):
 
     return render(request, 'hood.html')
 
+@login_required(login_url='/accounts/login/')
+def new_hood(request, hood_id):
+
+    return render(request, 'hood.html')
 
 @login_required(login_url='/accounts/login/')
 def business(request, hood_id):
@@ -56,11 +65,24 @@ def new_business(request):
             business = form.save(commit=False)
             business.profile = current_user
             business.save()
-        return redirect('Home')
+        return redirect('home')
 
     else:
         form = NewBusinessForm()
     return render(request, 'new_business.html', {"form": form})
+
+def post(request, post_id):
+    post = get_object_or_404(Image, pk=request.user)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.image = post
+            post.save()
+    return redirect('home')
+
+    return render(request, 'home.html')
 
 @login_required(login_url='/accounts/login/')
 def location(request, location_id):

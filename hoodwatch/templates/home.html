@@ -5,29 +5,72 @@
 {{block.super}}
 
 <div class="container-fluid">
-    <div class="business">
-        <h1>'Welcome to The Hood Watchgroup!'</h1>
-        <h3  style="text-align:center;">Businesses in the Hood</h3>
+    <h1>'Welcome to The Hood Watchgroup!'</h1>
+    <h3 style="text-align:center;">Businesses in the Hood</h3>
 
-        <div class="new"  style="text-align:center;">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div style="text-align:center; padding-bottom:20px;">
                 <p>Click to add a new business:</p>
                 <button type="button" class="btn">
                     <a href="{%url 'new_business'%}">Add a Business</a>
                 </button>
-            </div><br><hr>
-
-        <div class="row">
-            {% for post in business %}
-            <div class="col-md-4">
-                <a href="{% url  'profile' post.user.id %}"> {{post.user}} </a><br>
-                <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
-                <p>{{post.business_name}}</p>
-                <p>{{post.hood_id}}</p>
-                <p>{{post.email}}</p>
             </div>
-            {% endfor %}
-
+            <hr>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <hr>
+    <div class="row">
+        {% for post in business %}
+        <div class="col-md-4">
+            <a href="{% url  'profile' post.user.id %}"> {{post.user}} </a><br>
+            <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
+            <p>{{post.business_name}}</p>
+            <p>{{post.hood_id}}</p>
+            <p>{{post.email}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="hoods" style="text-align:center;">
+        <h3>Hoods</h3>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-4">
+                <div class="panel panel-danger" style="padding:20px;">
+                    {% for post in hood %}
+                    <div class="panel-heading">
+                        <a href="{{post.hood_name}}">Name: {{post.hood_name}}</a>
+                    </div>
+                    <div class="panel-body">
+                        <p>Location: {{post.hood_location}}</p>
+                    </div>
+                    <div class="panel-footer">
+                        <p>Population count: {{post.hood_count}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-3"></div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div style="text-align:center; padding-bottom:50px;">
+                <p>Post a Comment</p>
+                <form action="{% url 'post' %}" method="post">
+                    {%csrf_token%}
+                    {% bootstrap_form postForm layout='inline' %}
+                    <input type="submit" value="Post">
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="col-md-3"></div>
+    </div>
+
 </div>
 {% endblock %}

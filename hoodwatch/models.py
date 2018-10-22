@@ -47,9 +47,20 @@ def save_profile(sender, instance, **kwargs):
 
 class Hood(models.Model):
     hood_name = models.CharField(max_length=25)
-    hood_location = PlainLocationField(based_fields=['city'], zoom=7)
+    hood_image = models.ImageField(upload_to='hood/', null=True)
+    AREA_CHOICES = (
+        ('Westlands', 'Westlands Constituency'),
+        ('Dagoretti', 'Dagoretti Constituency'),
+        ('Langata', 'Langata Constituency'),
+        ('Kasarani', 'Kasarani Constituency'),
+        ('Embakasi', 'Embakasi Constituency'),
+        ('Starehe', 'Starehe Constituency'),
+        ('Kamkunji', 'Kamkunji Constituency'),
+    )
+    hood_location = models.CharField(max_length = 25, choices = AREA_CHOICES)
     hood_count = models.IntegerField(default=0, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    # post = models.ForeignKey(Post, blank=True, null=True)
 
     def save_hood(self):
         self.save()
