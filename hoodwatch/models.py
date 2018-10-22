@@ -14,7 +14,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length=500, blank=True)
     email = models.EmailField()
     phone_number = models.CharField(max_length=10, blank=True)
-    # hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    hood = models.ForeignKey('Hood', blank = True, null=True)
     
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
@@ -60,7 +60,6 @@ class Hood(models.Model):
     hood_location = models.CharField(max_length = 25, choices = AREA_CHOICES)
     hood_count = models.IntegerField(default=0, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    # post = models.ForeignKey(Post, blank=True, null=True)
 
     def save_hood(self):
         self.save()
@@ -83,7 +82,7 @@ class Hood(models.Model):
 class Business(models.Model):
     business_name = models.CharField(max_length=50)
     user = models.ForeignKey(User, default=True, on_delete=models.CASCADE)
-    hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    hood = models.ForeignKey(Hood, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='business/')
     business_email = models.EmailField()
 
@@ -107,6 +106,5 @@ class Business(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
-    description = models.TextField(max_length=500)
+    description = models.TextField(max_length=250)
     hood = models.ForeignKey(Hood, blank=True, on_delete=models.CASCADE)

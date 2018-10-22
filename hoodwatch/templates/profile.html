@@ -11,13 +11,10 @@
     <p>{{profile.email}}</p>
     <p>{{profile.phone_number}}</p><br>
 
-
-    <h4>My Hood</h4>
     {% for post in hood %}
 
-    <h6>{{post.hood_name}}</h6>
-    <p>{{post.city}}</p>
-    {{post.hood_location}}
+    <p>{{post.hood_name}}</p>
+    <!-- <p>{{post.hood_location}}</p> -->
 
     {% endfor %}
 

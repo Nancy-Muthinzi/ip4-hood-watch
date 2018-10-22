@@ -4,7 +4,7 @@
 {% block content %}
 {{block.super}}
 
-<div class="container-fluid">
+<div class="container-fluid" style="background-color:#F3DCDC;">
     <h1>'Welcome to The Hood Watchgroup!'</h1>
     <h3 style="text-align:center;">Businesses in the Hood</h3>
 
@@ -28,7 +28,7 @@
             <a href="{% url  'profile' post.user.id %}"> {{post.user}} </a><br>
             <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
             <p>{{post.business_name}}</p>
-            <p>{{post.hood_id}}</p>
+            <p>{{post.hood}}</p>
             <p>{{post.email}}</p>
         </div>
         {% endfor %}
@@ -41,7 +41,7 @@
                 <div class="panel panel-danger" style="padding:20px;">
                     {% for post in hood %}
                     <div class="panel-heading">
-                        <a href="{{post.hood_name}}">Name: {{post.hood_name}}</a>
+                        <a href="{% url 'hood' post.user.id %}">Name: {{post.hood_name}}</a>
                     </div>
                     <div class="panel-body">
                         <p>Location: {{post.hood_location}}</p>
