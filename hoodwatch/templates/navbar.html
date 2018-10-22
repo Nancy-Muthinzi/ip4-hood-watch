@@ -21,11 +21,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="fa fa-user-o" href="{% url 'profile' user.id %}" style="font-size:20px;"> {{user}}</a></li>
 
-                <li><a href="/accounts/login" class=""><i class="fa fa-share-square-o" style="font-size:20px">Login/Sign
+                <li><a href="/accounts/login" class=""><i class="fa fa-share-square-o" style="font-size:20px;"> Login/Sign
                             Up</i>
                     </a>
                 </li>
+                <li>
+                    <a href="/logout" class=""><i class="glyphicon glyphicon-log-out" style="font-size:20px;"> Log Out</i></a>
+                </li>
             </ul>
+
             <!-- Adding a search form  -->
             <div class="col-sm-4 col-md-4 navbar-right">
 
@@ -41,6 +45,7 @@
                 </form>
             </div>
             <!-- search form end -->
+
         </div>
     </div>
     <div class="navbar navbar-custom navbar-inverse navbar-static-top" id="nav2">
@@ -54,16 +59,22 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'home' %}" class="">Home</a>
+                    <li>
+                        <a href="{% url 'home' %}" class="">Home</a>
                     </li>
-                    <li><a href="{% url 'profile' user.id %}" class="">Profile</a>
+                    <li>
+                        <a href="{% url 'profile' user.id %}" class="">Profile</a>
                     </li>
-                    <li><a href="{% url 'hood' user.id %}" class="">Hood</a>
+                    <li>
+                        <a href="{% url 'hood' user.id %}" class="">Hood</a>
                     </li>
-                    <li><a href="{% url 'business' user.id %}" class="">Business</a>
+                    <li>
+                        <a href="{% url 'business' user.id %}" class="">Business</a>
                     </li>
-                    <li><a href="{% url 'location' user.id%}" class="">Locations</a></li>
-                    <li><a href="{% url 'contact' %}" class="">Contact</a>
+                    <li>
+                        <a href="{% url 'location' user.id%}" class="">Locations</a></li>
+                    <li>
+                        <a href="{% url 'contact' %}" class="">Contact</a>
                     </li>
                 </ul>
             </div>

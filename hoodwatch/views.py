@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 import datetime as dt
 from .models import Hood, Profile, Business, Post
 from django.contrib.auth.decorators import login_required
@@ -10,6 +10,9 @@ from .forms import PostForm
 def home(request):
     date = dt.date.today()
     business = Business.objects.all()
+    profiles = Profile.objects.all()
+    posts = Post.objects.all()
+
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -17,7 +20,7 @@ def home(request):
     else:
         form = PostForm()
 
-    return render(request, 'home.html', {'date': date, 'postForm': form, 'business': business})
+    return render(request, 'home.html', {'date': date, 'profile':profiles, 'postForm': form, 'business': business, 'posts':posts})
 
 
 @login_required(login_url='/accounts/login/')

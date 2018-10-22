@@ -14,7 +14,8 @@ class Profile(models.Model):
     bio = models.CharField(max_length=500, blank=True)
     email = models.EmailField()
     phone_number = models.CharField(max_length=10, blank=True)
-
+    # hood_id = models.ForeignKey(Hood, on_delete=models.CASCADE)
+    
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
         try:

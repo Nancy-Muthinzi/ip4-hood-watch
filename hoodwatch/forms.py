@@ -1,4 +1,6 @@
 from django import forms
+from .models import Post
+from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -11,4 +13,5 @@ class ProfileForm(forms.ModelForm):
 
 class PostForm(forms.Form):
     class Meta:
+        # model = Post
         fields = ['post']
