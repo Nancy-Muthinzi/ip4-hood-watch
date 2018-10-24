@@ -1,14 +1,16 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 import datetime as dt
 from .models import Hood, Profile, Business, Post
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm,NewBusinessForm
+from .forms import *
 
 
 @login_required(login_url='/accounts/login/')
 def home(request):
     date = dt.date.today()
+    business = Business.objects.all()
+
     business = Business.objects.all()
     profiles = Profile.objects.all()
     posts = Post.objects.all()
@@ -39,8 +41,13 @@ def profile(request, id):
 
 @login_required(login_url='/accounts/login/')
 def hood(request, hood_id):
-
-    return render(request, 'hood.html')
+    postform = PostForm()
+    hood_it = get_object_or_404(Hood,pk=hood_id)
+    business = Business.objects.filter(hood=hood_it)
+    # print(hood_it)
+    # print('ppppppppppp')
+    that_hood=Post.objects.filter(hood=hood_it)
+    return render(request, 'hood.html',locals())
 
 @login_required(login_url='/accounts/login/')
 def new_hood(request, hood_id):

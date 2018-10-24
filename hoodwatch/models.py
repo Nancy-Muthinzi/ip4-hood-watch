@@ -106,5 +106,5 @@ class Business(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    description = models.TextField(max_length=250)
+    post = models.TextField(max_length=250)
     hood = models.ForeignKey(Hood, blank=True, on_delete=models.CASCADE)

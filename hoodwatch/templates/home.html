@@ -5,23 +5,22 @@
 {{block.super}}
 
 <div class="container-fluid" style="background-color:#F3DCDC;">
-    <h1>'Welcome to The Hood Watchgroup!'</h1>
+    <h1 style="text-align:center;">Welcome to The Hood Watchgroup!</h1>
 
-    <!-- add business -->
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div style="text-align:center; padding-bottom:20px;">
-                <p>Click to add a new business:</p>
-                <button type="button" class="btn">
-                    <a href="{%url 'new_business'%}">Add a Business</a>
-                </button>
+            <!-- add business -->
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div style="text-align:center; padding-bottom:20px;">
+                        <p>Click to add a new business:</p>
+                        <button type="button" class="btn">
+                            <a href="{%url 'new_business'%}">Add a Business</a>
+                        </button>
+                    </div>
+                    <hr>
+                </div>
+                <div class="col-md-3"></div>
             </div>
-            <hr>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-
     <!-- show businesses -->
     <div class="row">
         <div class="panel panel-danger" style="text-align:center">
@@ -35,7 +34,7 @@
                 </div>
                 <div class="panel-content">
                     <p>Business Name: {{post.business_name}}</p>
-                    <p>Hood location: {{post.hood}}</p>
+                    <a href="/hood/{{post.hood.id}}  "">Hood location: {{post.hood}}</a>
                 </div>
                 <div class="panel-footer">
                     <p>Email address: {{post.business_email}}</p><br>
@@ -59,22 +58,6 @@
         </div>
         <div class="col-md-3"></div>
     </div> -->
-
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div style="text-align:center; padding-bottom:50px;">
-                <p>Post a Comment</p>
-                <form action="{% url 'post' %}" method="post">
-                    {%csrf_token%}
-                    {% bootstrap_form postForm layout='inline' %}
-                    <input type="submit" value="Post">
-                </form>
-            </div>
-        </div>
-        <hr>
-        <div class="col-md-3"></div>
-    </div>
 
     <!-- show hoods -->
     <div class="hoods" style="text-align:center;">

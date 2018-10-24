@@ -5,14 +5,34 @@
 {{block.super}}
 
 <div class="container-fluid">
-
+    <div class="row">
+        <div class="panel panel-danger" style="text-align:center">
+            {% for post in business %}
+            <div class="col-md-4">
+                <div class="panel-header">
+                    <a href="{% url  'profile' post.user.id %}">User: {{post.user}} </a><br>
+                </div>
+                <div class="panel-body">
+                    <img src="{{post.image.url}}" width="350px" height="350px" style="border: 5px solid firebrick; border-radius: 4px; padding: 5px;">
+                </div>
+                <div class="panel-content">
+                    <p>Business Name: {{post.business_name}}</p>
+                    <a href="/hood/{{post.hood.id}}  "">Hood location: {{post.hood}}</a>
+                </div>
+                <div class="panel-footer">
+                    <p>Email address: {{post.business_email}}</p><br>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
     <div class="hoods" style="text-align:center;">
         <h3>Hoods</h3>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-4">
                 <div class="panel panel-danger" style="padding:20px;">
-                    {% for post in hood %}
+                    {% for post in that_hood %}
                     <div class="panel-heading">
                         <a href="{% url 'hood' post.user.id %}">Name: {{post.hood_name}}</a>
                     </div>
@@ -27,6 +47,26 @@
             </div>
             <div class="col-md-3"></div>
         </div>
+
+ 
+
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div style="text-align:center; padding-bottom:50px;">
+                    <p>Create a Post</p>
+                    <form action="{% url 'post' %}" method="post">
+                        {%csrf_token%}
+                        {% bootstrap_form postform layout='inline' %}
+                        <input type="submit" value="Post">
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="col-md-3"></div>
+        </div>
+
     </div>
 
 
